@@ -59,3 +59,26 @@ function checkDatabase() {
         }
     };
 }
+
+request.onsuccess = function (e) {
+    console.log('success');
+    db = e.target.result;
+  
+    // Check if app is online before reading from db
+    if (navigator.onLine) {
+      console.log('Backend online! 🗄️');
+      checkDatabase();
+    }
+  };
+  
+  const saveRecord = (record) => {
+    console.log('Save record invoked');
+    const transaction = db.transaction(['BudgetStore'], 'readwrite');
+  
+    const store = transaction.objectStore('BudgetStore');
+  
+    store.add(record);
+  };
+  
+  window.addEventListener('online', checkDatabase);
+  
