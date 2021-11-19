@@ -53,7 +53,7 @@ function checkDatabase() {
                         const currentStore = transaction.objectStore('BudgetStore');
 
                         currentStore.clear();
-                        console.log('Clearing store 🧹');
+                        console.log('Clearing store');
                     }
                 });
         }
@@ -65,7 +65,7 @@ request.onsuccess = function (e) {
     db = e.target.result;
   
     if (navigator.onLine) {
-      console.log('Backend online! 🗄️');
+      console.log('Backend online!');
       checkDatabase();
     }
   };
